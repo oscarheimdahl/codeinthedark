@@ -1,13 +1,11 @@
-export const defaultHTML = `
-<div class="example">
+export const defaultHTML = `<div class="example">
   <div class="gradient-background">
     <div class="title">Code in the dark</div>
   </div>
 </div>
 `;
 
-export const defaultCSS = `
-.example {
+export const defaultCSS = `.example {
   background: rgb(38, 41, 54);
   display: grid;
   justify-content: center;
