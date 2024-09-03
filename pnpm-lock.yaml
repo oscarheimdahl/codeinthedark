@@ -23,6 +23,9 @@ importers:
       '@uiw/codemirror-theme-aura':
         specifier: ^4.23.0
         version: 4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)
+      '@uiw/codemirror-theme-dracula':
+        specifier: ^4.23.0
+        version: 4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)
       '@uiw/codemirror-theme-okaidia':
         specifier: ^4.23.0
         version: 4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)
@@ -632,6 +635,9 @@ packages:
 
   '@uiw/codemirror-theme-aura@4.23.0':
     resolution: {integrity: sha512-FDC5lzpIAdSMB7muzQjDL2O46n7gNQJMCrGpUlxoodTCiA7orY9AWqph5K91vCVbAQH9/FH1KnJ3NDdQE/ibcg==}
+
+  '@uiw/codemirror-theme-dracula@4.23.0':
+    resolution: {integrity: sha512-vjsCyljSEQcEbbTFGZweg2Er6dbFA/kCCPS9E5O4j7IfTA8p7M6u3AmpWz2TshY3jWHU2y0hH+8iXFHhO/6vEA==}
 
   '@uiw/codemirror-theme-okaidia@4.23.0':
     resolution: {integrity: sha512-J0FGui+ekMfws1ulMWfAohYXYlxOA1r6aHFAMPcZ9/0Gs+bWMm0Imx/m4pA0wYRHwEzaP6qzOl0IwfTGc04QPA==}
@@ -2078,6 +2084,14 @@ snapshots:
       '@codemirror/view': 6.33.0
 
   '@uiw/codemirror-theme-aura@4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)':
+    dependencies:
+      '@uiw/codemirror-themes': 4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)
+    transitivePeerDependencies:
+      - '@codemirror/language'
+      - '@codemirror/state'
+      - '@codemirror/view'
+
+  '@uiw/codemirror-theme-dracula@4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)':
     dependencies:
       '@uiw/codemirror-themes': 4.23.0(@codemirror/language@6.10.2)(@codemirror/state@6.4.1)(@codemirror/view@6.33.0)
     transitivePeerDependencies:

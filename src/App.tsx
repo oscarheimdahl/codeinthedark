@@ -1,63 +1,62 @@
-import { useState } from "react";
-import CodeMirror from "@uiw/react-codemirror";
-import { okaidia } from "@uiw/codemirror-theme-okaidia";
-import { less } from "@codemirror/lang-less";
-import { html as htmlMode } from "@codemirror/lang-html";
+import { useEffect, useState } from "react";
+import { CodeWindow } from "./components/CodeWindow";
+import { defaultCSS, defaultHTML } from "./defaultInput";
 
 const containerID = "injected-div";
 
 function App() {
-  const [css, setCSS] = useState("");
-  const [html, setHTML] = useState("");
+  const [html, setHTML] = useState(defaultHTML);
+  const [css, setCSS] = useState(defaultCSS);
+  const [userName, setUsername] = useState("");
+
+  useEffect(() => {
+    const handleCtrlS = (e: KeyboardEvent) => {
+      if (e.key === "s" && e.ctrlKey) {
+        console.log("Don't need that");
+        e.preventDefault();
+      }
+    };
+    document.addEventListener("keydown", handleCtrlS);
+    return () => {
+      document.removeEventListener("keydown", handleCtrlS);
+    };
+  }, []);
 
   return (
     <div className="w-full h-full flex flex-col gap-4">
-      <div className="flex gap-4 w-full">
-        <div className="flex flex-col h-full w-full">
-          <h2>HTML</h2>
-          <CodeMirror
-            minWidth={"100%"}
-            minHeight={"100%"}
-            theme={okaidia}
-            extensions={[htmlMode()]}
-            className="text-black h-full text-left flex-grow"
-            value={html}
-            onChange={(newValue) => {
-              setHTML(newValue);
-            }}
-          />
-        </div>
-        <div className="flex flex-col h-full w-full">
-          <h2>CSS</h2>
-          <CodeMirror
-            minWidth={"100%"}
-            minHeight={"100%"}
-            theme={okaidia}
-            extensions={[less()]}
-            className="text-black h-full text-left flex-grow"
-            value={css}
-            onChange={(newValue) => {
-              setCSS(newValue);
-            }}
-          />
-        </div>
+      <div className="flex justify-center w-full">
+        <input
+          placeholder="Displayname..."
+          className="w-min text-3xl text-center bg-transparent border-none placeholder-[#262936]"
+          value={userName}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+      </div>
+      <div className="flex gap-4 w-full ">
+        <CodeWindow mode="html" code={html} setCode={setHTML} />
+        <CodeWindow mode="css" code={css} setCode={setCSS} />
       </div>
       <div
-        className="ring"
+        className="bg-white shadow-sm"
         id={containerID}
         dangerouslySetInnerHTML={{
-          __html: `
-        <style>
-        #${containerID} {
-          ${css}
-        }
-        </style>
-        ${html}
-        `,
+          __html: buildHtmlCss(html, css),
         }}
       ></div>
     </div>
   );
+}
+
+function buildHtmlCss(html: string, css: string) {
+  if (!html) return "";
+  return `
+        <style>
+          #${containerID} {
+            ${css}
+          }
+        </style>
+        ${html}
+  `;
 }
 
 export default App;
