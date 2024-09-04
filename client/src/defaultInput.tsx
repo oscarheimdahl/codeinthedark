@@ -5,9 +5,10 @@ export const defaultHTML = `<div class="example">
 </div>
 `;
 
-export const defaultCSS = `.example {
+export const defaultCSS = `
+.example {
   background: rgb(38, 41, 54);
-  display: grid;
+  display: flex;
   justify-content: center;
   align-items: center;
 }
@@ -22,6 +23,9 @@ export const defaultCSS = `.example {
     purple 70%,
     crimson
   );
+  box-shadow:
+    0 4px 40px rgba(255, 0, 0, 0.2),
+    0 4px 10px rgba(0, 0, 255, 0.2);
 }
 
 .title {
