@@ -4,8 +4,7 @@ import { CtrlSToast } from '@/components/CtrlSToast';
 import { defaultCSS, defaultHTML } from '@/utils/defaultInput';
 import { ConnectionStuff } from '@/components/ConnectionStuff';
 import { Input } from '@/components/ui/Input';
-
-const containerID = 'injected-div';
+import { ResultView } from './components/ResultView';
 
 function App() {
   const [html, setHTML] = useState(defaultHTML);
@@ -14,12 +13,14 @@ function App() {
 
   return (
     <>
-      <div className='w-full h-full flex flex-col gap-2'>
+      <div className='w-full h-full flex flex-col gap-4'>
         <div className='flex justify-between mx-1'>
           <Input
             placeholder='Display name...'
             value={userName}
-            onChange={(e) => setUsername(e.target.value)}
+            onChange={(e) => {
+              setUsername(e.target.value);
+            }}
           />
           <ConnectionStuff />
         </div>
@@ -27,29 +28,11 @@ function App() {
           <CodeWindow mode='html' code={html} setCode={setHTML} />
           <CodeWindow mode='css' code={css} setCode={setCSS} />
         </div>
-        <div
-          className=''
-          id={containerID}
-          dangerouslySetInnerHTML={{
-            __html: buildHtmlCss(html, css),
-          }}
-        ></div>
+        <ResultView html={html} css={css} />
       </div>
       <CtrlSToast />
     </>
   );
-}
-
-function buildHtmlCss(html: string, css: string) {
-  if (!html) return '';
-  return `
-        <style>
-          #${containerID} {
-            ${css}
-          }
-        </style>
-        ${html}
-  `;
 }
 
 export default App;

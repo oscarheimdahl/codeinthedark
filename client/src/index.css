@@ -10,7 +10,7 @@ body,
 }
 
 body {
-  padding: 0.5rem;
+  padding: 1rem;
   background: hsl(231, 15%, 40%);
   font-family: Roboto;
 }

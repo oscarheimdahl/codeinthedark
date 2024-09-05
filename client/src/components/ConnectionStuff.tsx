@@ -1,6 +1,6 @@
 import { Input } from '@/components/ui/Input';
 import { cn } from '@/utils/cn';
-import { CircleCheck, Loader, PlugZap, X } from 'lucide-react';
+import { CircleCheck, CircleX, Loader, PlugZap, X } from 'lucide-react';
 import { FormEvent, useState } from 'react';
 
 export const ConnectionStuff = () => {
@@ -20,14 +20,16 @@ export const ConnectionStuff = () => {
 
     setState('loading');
     setTimeout(() => {
-      setState('success');
+      setState(Math.random() > 0.5 ? 'success' : 'error');
     }, 1000);
   };
 
   const icon = (state: 'idle' | 'loading' | 'success' | 'error') => {
     if (state === 'idle') return <PlugZap />;
-    if (state === 'loading') return <Loader className='animate-spin ' />;
-    if (state === 'success') return <CircleCheck />;
+    if (state === 'loading')
+      return <Loader className='animate-spin text-white' />;
+    if (state === 'success') return <CircleCheck className='text-blue-400' />;
+    if (state === 'error') return <CircleX className='text-red-500' />;
     return <X />;
   };
 
@@ -41,21 +43,23 @@ export const ConnectionStuff = () => {
           }
           onChange={(e) => handleInput(e.target.value)}
           placeholder='000-000'
-          className='w-[90px]'
+          className='w-[125px]'
         />
         <button
           disabled={disabled}
           type='submit'
           className={cn(
-            'transition-opacity gap-1 text-white px-2 py-1 flex rounded-md shadow-sm bg-gray-500 disabled:text-gray-800 disabled:cursor-not-allowed disabled:shadow-none',
-            disabled && 'text-gray-700',
-            state === 'idle' &&
-              !disabled &&
-              'bg-blue-500 hover:bg-blue-600 active:bg-blue-700',
-            state === 'success' && 'bg-green-600'
+            'absolute p-1 items-center gap-1 right-1',
+            'disabled:cursor-not-allowed'
           )}
         >
-          {icon(state)} Connect
+          <span
+            className={cn(
+              !disabled ? 'text-amber-400' : 'group-focus-within:text-gray-400'
+            )}
+          >
+            {icon(state)}
+          </span>
         </button>
       </div>
     </form>
