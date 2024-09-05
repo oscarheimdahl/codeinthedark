@@ -23,4 +23,10 @@ export interface CodeMessage extends Message {
   };
 }
 
+export interface CreateMessage extends Message {
+  topic: 'CREATE',
+}
+
 export type WebSocketMessage = JoinMessage | CodeMessage;
+
+
