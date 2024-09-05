@@ -1,22 +1,27 @@
 import { useState } from 'react';
+
 import { CodeWindow } from '@/components/CodeWindow';
-import { CtrlSToast } from '@/components/CtrlSToast';
-import { defaultCSS, defaultHTML } from '@/utils/defaultInput';
 import { ConnectionStuff } from '@/components/ConnectionStuff';
+import { CtrlSToast } from '@/components/CtrlSToast';
+import { ResultView } from '@/components/ResultView';
 import { Input } from '@/components/ui/Input';
-import { ResultView } from './components/ResultView';
+import { defaultCSS, defaultHTML } from '@/utils/defaultInput';
+
+import { type JoinMessage } from '~/messageTypes';
 
 function App() {
   const [html, setHTML] = useState(defaultHTML);
   const [css, setCSS] = useState(defaultCSS);
   const [userName, setUsername] = useState('');
 
+  const a: JoinMessage = {};
+
   return (
     <>
-      <div className='w-full h-full flex flex-col gap-4'>
-        <div className='flex justify-between mx-1'>
+      <div className="flex h-full w-full flex-col gap-4">
+        <div className="mx-1 flex justify-between">
           <Input
-            placeholder='Display name...'
+            placeholder="Display name..."
             value={userName}
             onChange={(e) => {
               setUsername(e.target.value);
@@ -24,9 +29,9 @@ function App() {
           />
           <ConnectionStuff />
         </div>
-        <div className='flex gap-4 w-full '>
-          <CodeWindow mode='html' code={html} setCode={setHTML} />
-          <CodeWindow mode='css' code={css} setCode={setCSS} />
+        <div className="flex w-full gap-4">
+          <CodeWindow mode="html" code={html} setCode={setHTML} />
+          <CodeWindow mode="css" code={css} setCode={setCSS} />
         </div>
         <ResultView html={html} css={css} />
       </div>

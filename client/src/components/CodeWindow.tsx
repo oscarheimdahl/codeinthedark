@@ -15,12 +15,12 @@ export const CodeWindow = ({ mode, code, setCode }: CodeWindowProps) => {
   const hideTitle = code.length > 4;
 
   return (
-    <div className='flex flex-col h-full w-full relative'>
+    <div className="relative flex h-full w-full flex-col">
       <CodeMirror
-        height='70vh'
+        height="70vh"
         theme={dracula}
         extensions={[isHtml ? htmlMode() : cssMode()]}
-        className='text-left shadow-lg text-xl rounded-md overflow-hidden'
+        className="overflow-hidden rounded-md text-left text-xl shadow-lg"
         value={code}
         basicSetup={{
           lineNumbers: true,
@@ -30,11 +30,7 @@ export const CodeWindow = ({ mode, code, setCode }: CodeWindowProps) => {
         }}
       />
       <span
-        className={`
-          ${hideTitle ? 'opacity-0' : 'opacity-50'} 
-          ${isHtml ? 'text-gradient-red' : 'text-gradient-blue'} 
-
-        absolute h-min bottom-0 right-2 text-white/5 select-none pointer-events-none font-bold text-9xl  transition-opacity`}
+        className={` ${hideTitle ? 'opacity-0' : 'opacity-50'} ${isHtml ? 'text-gradient-red' : 'text-gradient-blue'} pointer-events-none absolute bottom-0 right-2 h-min select-none text-9xl font-bold text-white/5 transition-opacity`}
       >
         {isHtml ? 'HTML' : 'CSS'}
       </span>

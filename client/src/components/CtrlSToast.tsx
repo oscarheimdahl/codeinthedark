@@ -1,5 +1,6 @@
-import { Smile } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
+
+import { Smile } from 'lucide-react';
 
 export const CtrlSToast = () => {
   const [show, setShow] = useState(false);
@@ -24,12 +25,11 @@ export const CtrlSToast = () => {
   return (
     <div
       aria-hidden={!show}
-      className={`${show ? '' : 'translate-x-[calc(100%+1rem)]'}
-        fixed bottom-4 right-4 p-4 pl-5 bg-darcula rounded-md shadow-lg overflow-hidden transition-transform`}
+      className={`${show ? '' : 'translate-x-[calc(100%+1rem)]'} fixed bottom-4 right-4 overflow-hidden rounded-md bg-darcula p-4 pl-5 shadow-lg transition-transform`}
     >
-      <div className='absolute left-0 top-0 h-full w-1 bg-orange-600'></div>
-      <span className='text-xl text-white flex gap-2 items-center'>
-        No need to save <Smile className='fill-amber-400 text-black' />
+      <div className="absolute left-0 top-0 h-full w-1 bg-orange-600"></div>
+      <span className="flex items-center gap-2 text-xl text-white">
+        No need to save <Smile className="fill-amber-400 text-black" />
       </span>
     </div>
   );
