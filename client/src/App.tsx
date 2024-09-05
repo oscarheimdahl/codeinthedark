@@ -1,7 +1,9 @@
 import { useState } from 'react';
-import { CodeWindow } from './components/CodeWindow';
-import { CtrlSToast } from './components/CtrlSToast';
-import { defaultCSS, defaultHTML } from './defaultInput';
+import { CodeWindow } from '@/components/CodeWindow';
+import { CtrlSToast } from '@/components/CtrlSToast';
+import { defaultCSS, defaultHTML } from '@/utils/defaultInput';
+import { ConnectionStuff } from '@/components/ConnectionStuff';
+import { Input } from '@/components/ui/Input';
 
 const containerID = 'injected-div';
 
@@ -12,14 +14,14 @@ function App() {
 
   return (
     <>
-      <div className='w-full h-full flex flex-col gap-4'>
-        <div className='flex justify-center w-full'>
-          <input
-            placeholder='Displayname...'
-            className='w-min text-3xl text-center bg-transparent border-none placeholder-darcula'
+      <div className='w-full h-full flex flex-col gap-2'>
+        <div className='flex justify-between mx-1'>
+          <Input
+            placeholder='Display name...'
             value={userName}
             onChange={(e) => setUsername(e.target.value)}
           />
+          <ConnectionStuff />
         </div>
         <div className='flex gap-4 w-full '>
           <CodeWindow mode='html' code={html} setCode={setHTML} />

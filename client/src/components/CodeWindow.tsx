@@ -34,7 +34,7 @@ export const CodeWindow = ({ mode, code, setCode }: CodeWindowProps) => {
           ${hideTitle ? 'opacity-0' : 'opacity-50'} 
           ${isHtml ? 'text-gradient-red' : 'text-gradient-blue'} 
 
-        absolute h-min bottom-0 right-2 text-white/5 select-none font-bold text-9xl  transition-opacity`}
+        absolute h-min bottom-0 right-2 text-white/5 select-none pointer-events-none font-bold text-9xl  transition-opacity`}
       >
         {isHtml ? 'HTML' : 'CSS'}
       </span>
