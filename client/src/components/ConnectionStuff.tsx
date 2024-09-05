@@ -26,9 +26,8 @@ export const ConnectionStuff = () => {
 
   const icon = (state: 'idle' | 'loading' | 'success' | 'error') => {
     if (state === 'idle') return <PlugZap />;
-    if (state === 'loading')
-      return <Loader className='animate-spin text-white' />;
-    if (state === 'success') return <CircleCheck className='text-blue-400' />;
+    if (state === 'loading') return <Loader className='animate-spin' />;
+    if (state === 'success') return <CircleCheck />;
     if (state === 'error') return <CircleX className='text-red-500' />;
     return <X />;
   };
@@ -49,17 +48,11 @@ export const ConnectionStuff = () => {
           disabled={disabled}
           type='submit'
           className={cn(
-            'absolute p-1 items-center gap-1 right-1',
+            'absolute p-1 items-center gap-1 right-1 text-[#9CA3AF]',
             'disabled:cursor-not-allowed'
           )}
         >
-          <span
-            className={cn(
-              !disabled ? 'text-amber-400' : 'group-focus-within:text-gray-400'
-            )}
-          >
-            {icon(state)}
-          </span>
+          {icon(state)}
         </button>
       </div>
     </form>
