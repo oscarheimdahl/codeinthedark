@@ -7,19 +7,15 @@ import { ResultView } from '@/components/ResultView';
 import { Input } from '@/components/ui/Input';
 import { defaultCSS, defaultHTML } from '@/utils/defaultInput';
 
-import { type JoinMessage } from '~/messageTypes';
-
 function App() {
   const [html, setHTML] = useState(defaultHTML);
   const [css, setCSS] = useState(defaultCSS);
   const [userName, setUsername] = useState('');
 
-  const a: JoinMessage = {};
-
   return (
     <>
-      <div className="flex h-full w-full flex-col gap-4">
-        <div className="mx-1 flex justify-between">
+      <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-center gap-4">
+        <div className="flex justify-between">
           <Input
             placeholder="Display name..."
             value={userName}
@@ -29,7 +25,7 @@ function App() {
           />
           <ConnectionStuff />
         </div>
-        <div className="flex w-full gap-4">
+        <div className="flex w-full gap-4 lg:text-xl">
           <CodeWindow mode="html" code={html} setCode={setHTML} />
           <CodeWindow mode="css" code={css} setCode={setCSS} />
         </div>

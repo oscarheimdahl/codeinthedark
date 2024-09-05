@@ -27,7 +27,8 @@ export const ConnectionStuff = () => {
   };
 
   const icon = (state: 'idle' | 'loading' | 'success' | 'error') => {
-    if (state === 'idle') return <PlugZap />;
+    if (state === 'idle')
+      return <PlugZap className={cn(!disabled && 'text-amber-500')} />;
     if (state === 'loading') return <Loader className="animate-spin" />;
     if (state === 'success') return <CircleCheck />;
     if (state === 'error') return <CircleX className="text-red-500" />;

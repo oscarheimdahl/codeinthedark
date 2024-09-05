@@ -3,6 +3,8 @@ import { less as cssMode } from '@codemirror/lang-less';
 import { dracula } from '@uiw/codemirror-theme-dracula';
 import CodeMirror from '@uiw/react-codemirror';
 
+import { cn } from '@/utils/cn';
+
 interface CodeWindowProps {
   mode: 'html' | 'css';
   code: string;
@@ -15,7 +17,7 @@ export const CodeWindow = ({ mode, code, setCode }: CodeWindowProps) => {
   const hideTitle = code.length > 4;
 
   return (
-    <div className="relative flex h-full w-full flex-col">
+    <div className="relative flex h-full w-full max-w-full flex-col overflow-y-hidden overflow-x-scroll">
       <CodeMirror
         height="70vh"
         theme={dracula}
@@ -30,7 +32,13 @@ export const CodeWindow = ({ mode, code, setCode }: CodeWindowProps) => {
         }}
       />
       <span
-        className={` ${hideTitle ? 'opacity-0' : 'opacity-50'} ${isHtml ? 'text-gradient-red' : 'text-gradient-blue'} pointer-events-none absolute bottom-0 right-2 h-min select-none text-9xl font-bold text-white/5 transition-opacity`}
+        className={
+          `${isHtml ? 'text-gradient-red' : 'text-gradient-blue'} ` +
+          cn(
+            hideTitle ? 'opacity-0' : 'opacity-50',
+            'pointer-events-none absolute bottom-0 right-2 h-min select-none text-9xl font-bold text-white/5 transition-opacity',
+          )
+        }
       >
         {isHtml ? 'HTML' : 'CSS'}
       </span>
