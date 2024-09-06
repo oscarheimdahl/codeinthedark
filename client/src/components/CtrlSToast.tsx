@@ -22,8 +22,8 @@ export const CtrlSToast = () => {
 
   useEffect(() => {
     const handleCtrlS = (e: KeyboardEvent) => {
-      e.preventDefault();
       if (e.key === 's' && (e.ctrlKey || e.metaKey)) {
+        e.preventDefault();
         clearTimeout(timerRef.current);
         const id = Math.random().toString();
         const randomColor = colors[Math.floor(Math.random() * colors.length)];

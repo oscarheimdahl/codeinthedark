@@ -14,7 +14,7 @@ function App() {
 
   return (
     <>
-      <div className="mx-auto flex h-full w-full max-w-7xl flex-col justify-center gap-4">
+      <div className="mx-auto flex h-full w-full max-w-7xl flex-col gap-4">
         <div className="flex justify-between">
           <Input
             placeholder="Display name..."
