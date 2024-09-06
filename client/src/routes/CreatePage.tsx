@@ -1,23 +1,32 @@
 import { useEffect } from 'react';
 
-const SERVER_URL = 'localhost:8000';
+import { socket } from '@/utils/socket';
 
 export const CreatePage = () => {
+  const handleClick = () => {
+    socket.createGame();
+  };
+
   useEffect(() => {
-    const connect = async () => {
-      const ws = new WebSocket(`ws://${SERVER_URL}/create`);
-      ws.onopen = () => {
-        console.log('connected');
-      };
-      ws.onmessage = (event) => {
-        console.log(event.data);
-      };
-      ws.onclose = () => {
-        console.log('disconnected');
-      };
+    const onCreate = () => {
+      console.log('CREATE 🟢');
     };
-    connect();
+
+    socket.addEventListener('CREATE', onCreate);
+
+    return () => {
+      socket.removeEventListener('CREATE', onCreate);
+    };
   }, []);
 
-  return <div className="text-white">CreatePage</div>;
+  return (
+    <div className="text-white">
+      <button
+        onClick={handleClick}
+        className="to rounded-md bg-orange-600 bg-gradient-to-br from-red-600 p-2"
+      >
+        Create game
+      </button>
+    </div>
+  );
 };

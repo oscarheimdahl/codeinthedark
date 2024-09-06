@@ -1,19 +1,8 @@
-/**
- * Websocket events, used by both the client and the server.
- * Subject to change
- */
-
 interface Message {
   topic: string;
   data?: any;
 }
 
-export interface JoinMessage extends Message {
-  topic: 'JOIN';
-  data: {
-    userName: string;
-  };
-}
 export interface JoinMessage extends Message {
   topic: 'JOIN';
   data: {
@@ -33,4 +22,6 @@ export interface CreateMessage extends Message {
   topic: 'CREATE';
 }
 
-export type WebSocketMessage = JoinMessage | CodeMessage;
+// Client -> Server
+export type ClientSocketMessage = JoinMessage | CodeMessage | CreateMessage;
+export type ClientSocketTopic = ClientSocketMessage['topic'];
