@@ -14,6 +14,12 @@ export interface JoinMessage extends Message {
     userName: string;
   };
 }
+export interface JoinMessage extends Message {
+  topic: 'JOIN';
+  data: {
+    userName: string;
+  };
+}
 
 export interface CodeMessage extends Message {
   topic: 'CODE';
@@ -24,9 +30,7 @@ export interface CodeMessage extends Message {
 }
 
 export interface CreateMessage extends Message {
-  topic: 'CREATE',
+  topic: 'CREATE';
 }
 
 export type WebSocketMessage = JoinMessage | CodeMessage;
-
-

@@ -4,7 +4,6 @@ export interface GameInterface {
   progress: Progress;
 }
 
-
 export enum Progress {
   DONE,
   NOT_STARTED,

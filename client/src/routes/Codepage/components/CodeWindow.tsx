@@ -17,12 +17,12 @@ export const CodeWindow = ({ mode, code, setCode }: CodeWindowProps) => {
   const hideTitle = code.length > 4;
 
   return (
-    <div className="relative flex h-full w-full max-w-full flex-col overflow-y-hidden overflow-x-scroll">
+    <div className="relative flex h-full w-full max-w-full flex-col overflow-y-hidden overflow-x-scroll rounded-md">
       <CodeMirror
         height="70vh"
         theme={dracula}
         extensions={[isHtml ? htmlMode() : cssMode()]}
-        className="overflow-hidden rounded-md text-left text-xl shadow-lg"
+        className="text-left text-xl"
         value={code}
         basicSetup={{
           lineNumbers: true,
@@ -33,10 +33,10 @@ export const CodeWindow = ({ mode, code, setCode }: CodeWindowProps) => {
       />
       <span
         className={
-          `${isHtml ? 'text-gradient-red' : 'text-gradient-blue'} ` +
+          `${isHtml ? 'text-gradient-red' : 'text-gradient-blue'} ` + // cn/tw-merge removes custom classes
           cn(
             hideTitle ? 'opacity-0' : 'opacity-50',
-            'pointer-events-none absolute bottom-0 right-2 h-min select-none text-9xl font-bold text-white/5 transition-opacity',
+            'pointer-events-none absolute bottom-0 right-2 h-min select-none text-9xl font-bold transition-opacity',
           )
         }
       >

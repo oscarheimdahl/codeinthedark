@@ -1,13 +1,13 @@
 import { useState } from 'react';
 
-import { CodeWindow } from '@/components/CodeWindow';
-import { ConnectionStuff } from '@/components/ConnectionStuff';
-import { CtrlSToast } from '@/components/CtrlSToast';
-import { ResultView } from '@/components/ResultView';
-import { Input } from '@/components/ui/Input';
+import { CodeWindow } from '@/routes/Codepage/components/CodeWindow';
+import { ConnectionStuff } from '@/routes/Codepage/components/ConnectionStuff';
+import { CtrlSToast } from '@/routes/Codepage/components/CtrlSToast';
+import { ResultView } from '@/routes/Codepage/components/ResultView';
+import { Input } from '@/ui/Input';
 import { defaultCSS, defaultHTML } from '@/utils/defaultInput';
 
-function App() {
+export const CodePage = () => {
   const [html, setHTML] = useState(defaultHTML);
   const [css, setCSS] = useState(defaultCSS);
   const [userName, setUsername] = useState('');
@@ -34,6 +34,4 @@ function App() {
       <CtrlSToast />
     </>
   );
-}
-
-export default App;
+};

@@ -2,7 +2,7 @@ import { FormEvent, useState } from 'react';
 
 import { CircleCheck, CircleX, Loader, PlugZap, X } from 'lucide-react';
 
-import { Input } from '@/components/ui/Input';
+import { Input } from '@/ui/Input';
 import { cn } from '@/utils/cn';
 
 export const ConnectionStuff = () => {
