@@ -4,7 +4,6 @@ import {
   CircleAlert as Alert,
   Meh,
   Save as SaveIcon,
-  Skull,
   SkullIcon,
   Sticker,
 } from 'lucide-react';
@@ -13,47 +12,50 @@ type Save = { id: string; x: number; color: string; num: number };
 
 export const CtrlSToast = () => {
   const [saves, setSaves] = useState<Save[]>([]);
-  const timerRef = useRef<NodeJS.Timeout>();
   const numSavesRef = useRef(0);
 
   const removeSave = (id: string) => {
     setSaves((prev) => prev.filter((save) => save.id !== id));
   };
 
+  const addSave = (id: string, color: string, num: number) =>
+    setSaves((prev) => [
+      ...prev,
+      {
+        id,
+        x: Math.random() * window.innerWidth,
+        color,
+        num,
+      },
+    ]);
+
   useEffect(() => {
     const handleCtrlS = (e: KeyboardEvent) => {
       if (e.key === 's' && (e.ctrlKey || e.metaKey)) {
         e.preventDefault();
-        clearTimeout(timerRef.current);
         const id = Math.random().toString();
         const randomColor = colors[Math.floor(Math.random() * colors.length)];
+        const num = numSavesRef.current++;
 
-        setSaves((prev) => [
-          ...prev,
-          {
-            id,
-            x: Math.random() * window.innerWidth,
-            color: randomColor,
-            num: numSavesRef.current++,
-          },
-        ]);
+        addSave(id, randomColor, num);
         setTimeout(() => removeSave(id), 1500);
       }
     };
+
     document.addEventListener('keydown', handleCtrlS);
+
     return () => {
       document.removeEventListener('keydown', handleCtrlS);
-      clearTimeout(timerRef.current);
     };
   }, []);
 
   const icon = (num: number) => {
     const style = { gridArea: '1 / 1' };
-    if (num < 20) return <SaveIcon style={style} className="size-6"></SaveIcon>;
-    if (num < 40) return <Sticker style={style} className="size-6"></Sticker>;
-    if (num < 60) return <Alert style={style} className="size-6"></Alert>;
-    if (num < 80) return <Meh style={style} className="size-6"></Meh>;
-    return <SkullIcon style={style} className="size-6"></SkullIcon>;
+    if (num < 20) return <SaveIcon style={style}></SaveIcon>;
+    if (num < 40) return <Sticker style={style}></Sticker>;
+    if (num < 60) return <Alert style={style}></Alert>;
+    if (num < 80) return <Meh style={style}></Meh>;
+    return <SkullIcon style={style}></SkullIcon>;
   };
 
   return saves.map((save) => (
@@ -69,7 +71,7 @@ export const CtrlSToast = () => {
         style={{ boxShadow: `0 4px 15px ${save.color}`, gridArea: '1 / 1' }}
         className="mx-auto size-4 opacity-50"
       ></div>
-      {icon(save.num)}
+      <div className="size-6 [grid-area:1/1]">{icon(save.num)}</div>
     </div>
   ));
 };

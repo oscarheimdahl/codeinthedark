@@ -43,5 +43,7 @@ const sendWebSocketMessage = (message: ClientSocketMessage) => {
 export const socket = {
   addEventListener,
   removeEventListener,
-  createGame,
+  send: {
+    createGame,
+  },
 };

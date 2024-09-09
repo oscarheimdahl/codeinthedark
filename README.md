@@ -12,8 +12,6 @@ pnpm dev
 ```mermaid
 sequenceDiagram
 
-
-
 Host->>Server:Create new event
 Server->>Host:Receive invite link / "game code" and connect socket
 Host-->>Client(s):Share link / code

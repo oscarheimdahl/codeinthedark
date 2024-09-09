@@ -4,20 +4,20 @@ import { socket } from '@/utils/socket';
 
 export const CreatePage = () => {
   const handleClick = () => {
-    socket.createGame();
+    socket.send.createGame();
   };
 
-  useEffect(() => {
-    const onCreate = () => {
-      console.log('CREATE 🟢');
-    };
+  // useEffect(() => {
+  //   const onCreate = () => {
+  //     console.log('CREATE 🟢');
+  //   };
 
-    socket.addEventListener('CREATE', onCreate);
+  //   socket.addEventListener('CREATE', onCreate);
 
-    return () => {
-      socket.removeEventListener('CREATE', onCreate);
-    };
-  }, []);
+  //   return () => {
+  //     socket.removeEventListener('CREATE', onCreate);
+  //   };
+  // }, []);
 
   return (
     <div className="text-white">
